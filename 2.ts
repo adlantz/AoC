@@ -6,13 +6,13 @@ async function main() {
     inputs.push(line);
   }
 
-  const output = countvalid(inputs);
+  const output = countValid(inputs);
 
   return output;
 }
 
-const countvalid = (inputs: string[]): number => {
-  let numvalid: number = 0;
+const countValid = (inputs: string[]): number => {
+  let numValid: number = 0;
   for (const input of inputs) {
     let dashi: number = input.indexOf("-");
     let coloni: number = input.indexOf(":");
@@ -21,42 +21,33 @@ const countvalid = (inputs: string[]): number => {
     let ltr: string = input.slice(coloni - 1, coloni);
     let pwd: string = input.slice(coloni + 2);
 
-    if (checkvalidnew(rmin, rmax, ltr, pwd) === true) {
-      numvalid++;
+    if (checkValidNew(rmin, rmax, ltr, pwd) === true) {
+      numValid++;
     }
   }
 
-  return numvalid;
+  return numValid;
 };
 
-const checkvalid = (
+const checkValid = (
   rmin: number,
   rmax: number,
   ltr: string,
   pwd: string
 ): boolean => {
-  let valid: boolean = false;
   let numltr = (pwd.match(RegExp(ltr, "g")) || []).length;
-
-  if (numltr >= rmin && numltr <= rmax) {
-    valid = true;
-  }
-  return valid;
+  return numltr >= rmin && numltr <= rmax;
 };
 
-const checkvalidnew = (
+const checkValidNew = (
   rmin: number,
   rmax: number,
   ltr: string,
   pwd: string
 ): boolean => {
-  let valid: boolean = false;
   let s1: boolean = pwd[rmin - 1] === ltr;
   let s2: boolean = pwd[rmax - 1] === ltr;
-  if (s1 ? !s2 : s2) {
-    valid = true;
-  }
-  return valid;
+  return s1 ? !s2 : s2;
 };
 
 const output = await main();
