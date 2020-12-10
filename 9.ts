@@ -13,6 +13,9 @@ async function main() {
   for (let i = 0; i < inputs.length; i++) {
     for (let j = i + 2; j < inputs.length; j++) {
       let subArray = inputs.slice(i, j);
+      if (subArray.reduce((a, b) => a + b) > inValid) {
+        break;
+      }
       if (subArray.reduce((a, b) => a + b) === inValid) {
         return Math.min(...subArray) + Math.max(...subArray);
       }
