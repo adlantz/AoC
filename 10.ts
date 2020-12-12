@@ -1,10 +1,5 @@
 import { readLines } from "./deps.ts";
 
-interface node {
-  id: string;
-  numChildren: number;
-}
-
 async function main() {
   let inputs: number[] = [];
   inputs.push(0);
