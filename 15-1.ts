@@ -6,15 +6,15 @@ async function main() {
     start = line.split(",");
   }
 
-  let dict: { [num: string]: number } = {};
+  let dict: { [num: number]: number } = {};
 
   for (let i = 0; i < start.length; i++) {
-    dict[start[i]] = i;
+    dict[parseInt(start[i])] = i;
   }
 
   // dict["0"] = start.length;
   console.log(dict);
-  let lastSaid: string = "0";
+  let lastSaid: number = 0;
   // console.log(lastSaid);
   let difference: number = 0;
   for (let i = start.length; i < 30000000 - 1; i++) {
@@ -22,12 +22,12 @@ async function main() {
       // console.log("old");
       difference = i - dict[lastSaid];
       dict[lastSaid] = i;
-      lastSaid = difference.toString();
+      lastSaid = difference;
     } else {
       // console.log(dict);
       // console.log(`${lastSaid} not in dict`);
       dict[lastSaid] = i;
-      lastSaid = "0";
+      lastSaid = 0;
     }
 
     // console.log(lastSaid);
